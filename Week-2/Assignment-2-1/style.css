@@ -74,6 +74,23 @@ a {
     margin: 0 0 8px 0;
 }
 
+.formButton {    
+    display: flex;
+    justify-content: flex-end;
+}
+
+.formButton button {
+    background-color: #facfd6;
+    color: #000000;
+    border: solid 1px #e7a6b1;
+    width: 70%;
+}
+
+.formButton button:hover {
+    background-color: #caedff;
+    border: solid 1px #4188ab;
+}
+
 @media screen and (max-width: 720px) {
     .articlesFormSection {
         grid-template-columns: repeat(2, 1fr);

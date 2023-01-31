@@ -54,3 +54,58 @@ body {
     margin: 0;
 }
 
+.mainSection:hover .box-1,
+.mainSection:hover .box-4 {
+    animation: square-rotate 2s forwards;
+}
+
+.mainSection .box-1,
+.mainSection .box-4 {
+    animation: square-rotate-back 2s forwards;
+}
+
+.mainSection:hover .box-2,
+.mainSection:hover .box-3 {
+    animation: square-anti-rotate 2s forwards;
+}
+
+.mainSection .box-2,
+.mainSection .box-3 {
+    animation: square-anti-rotate-back 2s forwards;
+}
+
+@keyframes square-rotate{
+    0% {
+      transform: rotate(0);
+    }
+    100% {
+      transform: rotate(90deg);
+    }
+}
+
+@keyframes square-rotate-back{
+    0% {
+      transform: rotate(90deg);
+    }
+    100% {
+      transform: rotate(0deg);
+    }
+}
+
+@keyframes square-anti-rotate{
+    0% {
+      transform: rotate(0);
+    }
+    100% {
+      transform: rotate(-90deg);
+    }
+}
+
+@keyframes square-anti-rotate-back{
+    0% {
+      transform: rotate(-90deg);
+    }
+    100% {
+      transform: rotate(0deg);
+    }
+}

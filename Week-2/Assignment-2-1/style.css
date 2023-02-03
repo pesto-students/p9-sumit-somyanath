@@ -1,0 +1,134 @@
+body {
+    background-color: #37323291;
+    color: #ffffff;
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+a {
+    color: rgb(32, 119, 201);
+}
+
+.pageHeader,
+.pageFooter {
+    text-align: center;
+}
+
+.pageFooter {
+    margin-top: auto;
+}
+
+.pageHeading {
+    text-decoration: underline;
+    margin-bottom: 12px;
+}
+
+.articlesFormSection {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    margin-top: 16px;
+}
+
+.article,
+.contactForm {
+    padding: 0 24px;
+}
+
+.article-1 {
+    grid-area: 1 / 1 / 2 / 2;
+}
+
+.article-2 {
+    grid-area: 1 / 2 / 2 / 3;
+}
+
+.article-3 {
+    grid-area: 2 / 1 / 3 / 2;
+}
+
+.contactForm {
+    grid-area: 2 / 2 / 3 / 3;
+}
+
+.articleTitle {
+    margin: 0;
+}
+
+.contactForm {
+    display: flex;
+    flex-direction: column;
+}
+
+.fieldSection {
+    display: grid;
+    grid-template-columns: 30% 70%;
+    grid-template-rows: 100%;
+    margin-bottom: 12px;
+}
+
+.contactFormHeading {
+    margin: 0 0 8px 0;
+}
+
+.formButton {    
+    display: flex;
+    justify-content: flex-end;
+}
+
+.formButton button {
+    background-color: #facfd6;
+    color: #000000;
+    border: solid 1px #e7a6b1;
+    width: 70%;
+}
+
+.formButton button:hover {
+    background-color: #caedff;
+    border: solid 1px #4188ab;
+}
+
+@media screen and (max-width: 720px) {
+    .articlesFormSection {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: 2fr 1fr 1fr;
+    }
+    
+    .article-3 {
+        grid-area: 2 / 1 / 3 / 3;
+    }
+    
+    .contactForm {
+        grid-area: 3 / 1 / 4 / 3;
+    }
+}
+
+@media screen and (max-width:520px) {
+    .articlesFormSection {
+        grid-template-columns: repeat(1, 1fr);
+        grid-template-rows: repeat(1, 1fr);
+    }
+
+    .article-1 {
+        grid-area: 1 / 1 / 2 / 2;
+    }
+    
+    .article-2 {
+        grid-area: 2 / 1 / 3 / 2;
+    }
+    
+    .article-3 {
+        grid-area: 3 / 1 / 4 / 2;
+    }
+    
+    .contactForm {
+        grid-area: 4 / 1 / 5 / 2;
+    }
+
+    .article {
+        margin-top: 24px;
+    }
+}

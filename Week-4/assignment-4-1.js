@@ -7,24 +7,26 @@ const PROMISE_STATES = {
 function MyPromise (executor) {
   let status = PROMISE_STATES.PENDING,
       // isResolved = false,
-      thenHandler,
+      handlerChain = [],
       value;
 
   function resolve (passedValue) {
     value = passedValue;
     status = PROMISE_STATES.FULFILLED;
 
-    if (typeof thenHandler === 'function') {
-      thenHandler(value);
+    if (handlerChain.length) {
+      handlerChain.reduce((accumulator, handleFunction) => handleFunction(accumulator), value);
     }
   }
 
   this.then = function (callback) {
-    thenHandler = callback.bind(this);
+    handlerChain.push(callback.bind(this));
 
     if (status === PROMISE_STATES.FULFILLED) {
-      thenHandler(value);
+      handlerChain.reduce((accumulator, handleFunction) => handleFunction(accumulator), value);
     }
+
+    return this;
   }
 
   try {
@@ -53,5 +55,8 @@ function getNumber(delay) {
 getNumber(1000)
   .then((response) => {
     console.log(`then block ${response}`);
-    // return response;
+    return response;
+  })
+  .then((response) => {
+    console.log(`inside the next then ${response}`);
   })

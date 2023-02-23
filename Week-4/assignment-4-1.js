@@ -1,37 +1,50 @@
+const PROMISE_STATES = {
+  PENDING: 'pending',
+  FULFILLED: 'fulfilled',
+  REJECTED: 'rejected'
+};
+
 function MyPromise (executor) {
-  let onResolve, onReject;
+  let status = PROMISE_STATES.PENDING,
+      // isResolved = false,
+      value;
 
-  function resolve (value) {
-    onResolve(value);
-  }
-
-  function reject (error) {
-    onReject(error)
+  function resolve (passedValue) {
+    value = passedValue;
+    status = PROMISE_STATES.FULFILLED
   }
 
   this.then = function (callback) {
-    onResolve = callback;
-    return this;
-  };
+    if (status === PROMISE_STATES.FULFILLED) {
+      callback(value);
+    }
+  }
 
-  this.catch = function (callback) {
-    onReject = callback;
-    return this;
-   };
-
-  executor(resolve, reject);
+  try {
+    executor(resolve);
+  } catch (error) {
+    new Error(error);
+  }
 };
 
-const delayOneSec = new MyPromise((resolve, reject) => {
-  setTimeout(() => {
-    resolve(2);
-  }, 1000)
-});
-
-delayOneSec
-  .then((response) => {
-    console.log(response);
+function getNumber(delay) {
+  return new MyPromise((resolve) => {
+    const randonNumber = Math.floor(Math.random() * 100) + 1;
+    console.log(randonNumber);
+  
+    // setTimeout(() => {
+      // if(randonNumber % 5 === 0) {
+        // reject(`Number ${randonNumber} Promise rejected after ${delay} miliseconds`);
+      // }
+      // else {
+        resolve(`Number ${randonNumber} Promise resolved after ${delay} miliseconds`)
+      // }
+    // }, 1000)
   })
-  .catch((error) => {
-    console.log(error);
+};
+
+getNumber(1000)
+  .then((response) => {
+    console.log(`then block ${response}`);
+    // return response;
   })

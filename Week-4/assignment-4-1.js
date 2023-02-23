@@ -7,23 +7,30 @@ const PROMISE_STATES = {
 function MyPromise (executor) {
   let status = PROMISE_STATES.PENDING,
       // isResolved = false,
+      thenHandler,
       value;
 
   function resolve (passedValue) {
     value = passedValue;
-    status = PROMISE_STATES.FULFILLED
+    status = PROMISE_STATES.FULFILLED;
+
+    if (typeof thenHandler === 'function') {
+      thenHandler(value);
+    }
   }
 
   this.then = function (callback) {
+    thenHandler = callback.bind(this);
+
     if (status === PROMISE_STATES.FULFILLED) {
-      callback(value);
+      thenHandler(value);
     }
   }
 
   try {
     executor(resolve);
   } catch (error) {
-    new Error(error);
+    throw new Error(error);
   }
 };
 
@@ -32,14 +39,14 @@ function getNumber(delay) {
     const randonNumber = Math.floor(Math.random() * 100) + 1;
     console.log(randonNumber);
   
-    // setTimeout(() => {
+    setTimeout(() => {
       // if(randonNumber % 5 === 0) {
         // reject(`Number ${randonNumber} Promise rejected after ${delay} miliseconds`);
       // }
       // else {
         resolve(`Number ${randonNumber} Promise resolved after ${delay} miliseconds`)
       // }
-    // }, 1000)
+    }, 1000)
   })
 };
 

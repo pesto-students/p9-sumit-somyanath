@@ -61,14 +61,13 @@ function MyPromise (executor) {
 function getNumber(delay) {
   return new MyPromise((resolve, reject) => {
     const randonNumber = Math.floor(Math.random() * 100) + 1;
-    console.log(randonNumber);
   
     setTimeout(() => {
       if(randonNumber % 5 === 0) {
         reject(`Number ${randonNumber} Promise rejected after ${delay} miliseconds`);
       }
       else {
-        reject(`Number ${randonNumber} Promise resolved after ${delay} miliseconds`)
+        resolve(`Number ${randonNumber} Promise resolved after ${delay} miliseconds`)
       }
     }, 1000)
   })

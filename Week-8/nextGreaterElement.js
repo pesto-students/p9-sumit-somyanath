@@ -21,3 +21,8 @@ const nextGreaterInArray = (arr) => {
 
 console.log(nextGreaterInArray([1,3,2,4]));
 console.log(nextGreaterInArray([6,8,0,1,3]));
+
+/*
+TC: O(N);
+SC: O(N);
+*/

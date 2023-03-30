@@ -54,3 +54,8 @@ const rotateLL = (headNode, rotations) => {
 };
 
 printLL(rotateLL(nodeA, 3));
+
+/*
+TC: O(N);
+SC: O(1);
+*/

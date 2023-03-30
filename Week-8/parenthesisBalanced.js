@@ -40,3 +40,8 @@ const balancedExpression = (expression) => {
 }
 
 console.log(balancedExpression("[(){()()}"));
+
+/*
+TC: O(N);
+SC: O(N);
+*/
